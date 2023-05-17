@@ -84,24 +84,34 @@ async function checkConnect(req, res) {
     const r = {
         "errCode": 0
     }
+    let pool
     try {
-        let pool = await sql.connect(connectConfig)
+        pool = await sql.connect(connectConfig)
         r.data = 'Success';
     } catch (err) {
         r.errCode = 1
         r.data = 'Connection fail';
     }
-    pool.close()
+    if (pool.close) {
+        pool.close();   
+    }
+    
     res.json(r);
 }
 
-app.post('/api/databaseSource/postgres/query', getDataMS)
+app.post('/api/databaseSource/mssql/query', getDataMS)
 
 app.get('/', (req, res) => {
     res.send('Hello World!')
 })
 
-app.post('/api/databaseSource/postgres/connect', checkConnect)
+app.post('/api/databaseSource/mssql/connect', checkConnect)
+app.all('/api/databaseSource/mssql/connect', (req, res) => {
+    const r = {
+        "errCode": 0
+    }
+    res.json(r);
+})
 
 
 app.listen(port, () => {

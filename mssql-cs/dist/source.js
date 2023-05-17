@@ -165,9 +165,9 @@ var compMssqlCs={
       if(row && !row.url) {
          return false;
       }
-      if(row && row.access == 'proxy' && row.sourceurl) {
-        var localhostUrl  = row.sourceurl;
-        var proxyqueryType = '/api/databaseSource/postgres/connect';
+      if(row && row.access == 'proxy' && row.json_data && row.json_data.sourceurl) {
+        var localhostUrl  = row.json_data.sourceurl;
+        var proxyqueryType = '/api/databaseSource/mssql/connect';
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
