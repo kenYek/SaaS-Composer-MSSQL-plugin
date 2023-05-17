@@ -149,11 +149,8 @@
                     }
                     return true;
                 };
-                console.log('---', sourceList[i].json_data, sourceList[i].json_data.sourceurl)
                 const json_data = JSON.parse(sourceList[i].json_data);
-                console.log('---**', json_data, json_data.sourceurl)
                 var localhostUrl  = json_data.sourceurl;
-                console.log('localhostUrl', sourceList[i])
                 xhttp.open("POST", localhostUrl + queryType, true);
                 xhttp.timeout = 30000; 
                 xhttp.setRequestHeader('Content-type', 'application/json; charset=UTF-8');
