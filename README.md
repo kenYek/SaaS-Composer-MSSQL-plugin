@@ -38,3 +38,23 @@ Use click event trigger setValue function execute.
 - If variable name is **aaa**.  
 
     var targets = [{rawSql: "UPDATE Table SET value = "+num+" WHERE c1 = '[[aaa]]'",scDataType: "value",sourceType: "postgres",target: "set",type: "set"}]
+
+
+# Note  
+
+In Dockerfile Folder create Docker Image。
+
+    docker build . -t <your username>/saas-composer-mssql-dataserver
+
+Docker Images
+
+    $ docker images
+
+    # Example
+    REPOSITORY                      TAG        ID              CREATED
+    node                            12         1934b0b038d1    5 days ago
+    <your username>/saas-composer-mssql-dataserver    latest     d64d3505b0d2    1 minute ago
+
+Docker RUN:   
+
+    docker run -p 49160:3500 -d <your username>/saas-composer-mssql-dataserver
